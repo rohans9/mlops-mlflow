@@ -6,11 +6,8 @@ from sklearn.model_selection import train_test_split
 from sklearn.metrics import accuracy_score, confusion_matrix
 import matplotlib.pyplot as plt
 import seaborn as sns
-import dagshub
 
-dagshub.init(repo_owner='rohans', repo_name='mlops-mlflow', mlflow=True)
-
-mlflow.set_tracking_uri("https://dagshub.com/rohans/mlops-mlflow.mlflow")
+mlflow.set_tracking_uri("http://127.0.0.1:5000")
 
 # Load Wine dataset
 wine = load_wine()

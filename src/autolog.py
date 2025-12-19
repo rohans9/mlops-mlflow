@@ -8,7 +8,7 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 import dagshub
 
-dagshub.init(repo_owner='rohans', repo_name='mlops-mlflow', mlflow=True)
+# dagshub.init(repo_owner='rohans', repo_name='mlops-mlflow', mlflow=True)
 
 mlflow.set_tracking_uri("https://dagshub.com/rohans/mlops-mlflow.mlflow")
 
@@ -24,6 +24,7 @@ X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.10, random
 max_depth = 10
 n_estimators = 20
 
+mlflow.autolog()
 # Mention your experiment below
 mlflow.set_experiment('Wine-Classification-Experiment')
 
@@ -34,9 +35,9 @@ with mlflow.start_run():
     y_pred = rf.predict(X_test)
     accuracy = accuracy_score(y_test, y_pred)
 
-    mlflow.log_metric('accuracy', accuracy)
-    mlflow.log_param('max_depth', max_depth)
-    mlflow.log_param('n_estimators', n_estimators)
+    # mlflow.log_metric('accuracy', accuracy)
+    # mlflow.log_param('max_depth', max_depth)
+    # mlflow.log_param('n_estimators', n_estimators)
 
     # Creating a confusion matrix plot
     cm = confusion_matrix(y_test, y_pred)
@@ -50,7 +51,7 @@ with mlflow.start_run():
     plt.savefig("Confusion-matrix.png")
 
     # log artifacts using mlflow
-    mlflow.log_artifact("Confusion-matrix.png")
+    # mlflow.log_artifact("Confusion-matrix.png")
     mlflow.log_artifact(__file__)
 
     # tags
